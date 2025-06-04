@@ -40,6 +40,10 @@ func _on_next_transitions() -> void:
 	# Dash state
 	elif GameInputEvents.dash_input():
 		transition.emit("Dash")
+	
+	# Attack state
+	elif GameInputEvents.attack_input():
+		transition.emit("Attack")
 
 
 func _on_enter() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://chk2w42qg84j1"]
+[gd_scene load_steps=76 format=3 uid="uid://chk2w42qg84j1"]
 
 [ext_resource type="Script" uid="uid://um36yifa5gs7" path="res://player/scripts/player.gd" id="1_kb6p2"]
 [ext_resource type="Texture2D" uid="uid://t8ag87hlws8k" path="res://assets/player/Idle-Sheet.png" id="1_oul6g"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://chbbs8slvx62s" path="res://player/scripts/dash_state.gd" id="11_yllr7"]
 [ext_resource type="Script" uid="uid://ddi6eicyx1cl4" path="res://player/scripts/death_state.gd" id="12_kb6p2"]
 [ext_resource type="Script" uid="uid://dvx8k0fwkcs2t" path="res://player/scripts/attack_state.gd" id="13_wodsf"]
+[ext_resource type="Script" uid="uid://iw0j1u0rlwwx" path="res://player/scripts/attack_2.gd" id="15_wodsf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r7pn3"]
 atlas = ExtResource("1_yw30f")
@@ -429,6 +430,152 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Animation" id="Animation_32hag"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack_up"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StateMachine/Attack2:attacking_2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StateMachine/Attack:attacking")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wodsf"]
+resource_name = "attack_down"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack_down"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StateMachine/Attack2:attacking_2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_kb6p2"]
+resource_name = "attack_up"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack_up"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StateMachine/Attack:attacking")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_tqiix"]
+resource_name = "dash"
+length = 0.8
+step = 0.1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tqiix"]
+_data = {
+&"RESET": SubResource("Animation_32hag"),
+&"attack_down": SubResource("Animation_wodsf"),
+&"attack_up": SubResource("Animation_kb6p2"),
+&"dash": SubResource("Animation_tqiix")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yllr7"]
 size = Vector2(15.7895, 20)
 
@@ -438,8 +585,13 @@ script = ExtResource("1_kb6p2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_g6k8r")
-animation = &"death"
+animation = &"attack_up"
 autoplay = "idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tqiix")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -23)
@@ -459,6 +611,7 @@ animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 script = ExtResource("7_boad6")
 character_body_2d = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+coyote_time_duration = 0.1
 
 [node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d", "animated_sprite_2d")]
 script = ExtResource("8_rgyib")
@@ -482,7 +635,12 @@ deceleration = 400
 character_body_2d = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 
-[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d", "animated_sprite_2d")]
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d", "animation_player")]
 script = ExtResource("13_wodsf")
 character_body_2d = NodePath("../..")
-animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+animation_player = NodePath("../../AnimationPlayer")
+
+[node name="Attack2" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d", "animation_player")]
+script = ExtResource("15_wodsf")
+character_body_2d = NodePath("../..")
+animation_player = NodePath("../../AnimationPlayer")
