@@ -11,7 +11,12 @@ func _on_process(_delta : float) -> void:
 		
 		
 func _on_physics_process(_delta : float) -> void:
-	pass
+	GameInputEvents.apply_gravity(character_body_2d, _delta)
+	
+	if not GameInputEvents.movement_input():
+		character_body_2d.velocity.x = 0
+	
+	character_body_2d.move_and_slide()
 
 
 func _on_next_transitions() -> void:
@@ -30,13 +35,14 @@ func _on_enter() -> void:
 	animation_player.play("attack_up")
 	combo_timer()
 
+
 func _on_exit() -> void:
 	animation_player.stop()
 	
 
 func combo_timer():
 	can_combo = true
-	await get_tree().create_timer(0.7).timeout
+	await get_tree().create_timer(0.5).timeout
 	can_combo = false
 	
 	

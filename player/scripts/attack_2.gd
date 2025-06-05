@@ -10,11 +10,19 @@ func _on_process(_delta : float) -> void:
 		
 
 func _on_physics_process(_delta : float) -> void:
-	pass
-
-
+	GameInputEvents.apply_gravity(character_body_2d, _delta)
+	
+	if not GameInputEvents.movement_input():
+		character_body_2d.velocity.x = 0
+	
+	character_body_2d.move_and_slide()
+	
+	
 func _on_next_transitions() -> void:
-	if character_body_2d.is_on_floor() and attacking_2 == false:
+	if GameInputEvents.attack_input() and attacking_2 == false:
+		transition.emit("Attack")
+		
+	elif character_body_2d.is_on_floor() and attacking_2 == false:
 		transition.emit("Idle")
 	
 	elif not character_body_2d.is_on_floor() and attacking_2 == false:
