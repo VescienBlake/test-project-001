@@ -4,6 +4,7 @@ extends NodeState
 @export var animation_player: AnimationPlayer
 @export var attacking = false
 @export var can_combo = false
+@onready var hurtbox: Hurtbox = $"../../Hurtbox"
 
 
 func _on_process(_delta : float) -> void:
@@ -12,11 +13,16 @@ func _on_process(_delta : float) -> void:
 		
 func _on_physics_process(_delta : float) -> void:
 	GameInputEvents.apply_gravity(character_body_2d, _delta)
+	if attacking:
+		hurtbox.visible = true
+	else:
+		hurtbox.monitoring = false
+		hurtbox.visible = false
 	
-	if not GameInputEvents.movement_input():
-		character_body_2d.velocity.x = 0
+	#if not GameInputEvents.movement_input():
+		#character_body_2d.velocity.x = 0
 	
-	character_body_2d.move_and_slide()
+	#character_body_2d.move_and_slide()
 
 
 func _on_next_transitions() -> void:
@@ -31,6 +37,7 @@ func _on_next_transitions() -> void:
 
 
 func _on_enter() -> void:
+	hurtbox.monitoring = true
 	attacking = true
 	animation_player.play("attack_up")
 	combo_timer()

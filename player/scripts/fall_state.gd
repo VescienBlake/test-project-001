@@ -22,9 +22,6 @@ func _on_physics_process(_delta : float) -> void:
 	var direction = GameInputEvents.movement_input()
 	character_body_2d.velocity.x = direction * speed
 	
-	# Flips sprite
-	if direction:
-		animated_sprite_2d.flip_h = false if direction > 0 else true
 	
 	character_body_2d.move_and_slide()
 

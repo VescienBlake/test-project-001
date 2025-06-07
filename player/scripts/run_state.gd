@@ -17,9 +17,6 @@ func _on_physics_process(_delta : float) -> void:
 
 	if direction:
 		character_body_2d.velocity.x = direction * speed
-		animated_sprite_2d.flip_h = false if direction > 0 else true
-	#else:
-		#character_body_2d.velocity.x = move_toward(character_body_2d.velocity.x, 0, speed * deceleration)
 		
 	character_body_2d.move_and_slide()
 	

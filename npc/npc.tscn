@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://ct2bsvg1inmi5"]
+
+[ext_resource type="Script" uid="uid://ctcfjbyvjv5vl" path="res://npc/npc.gd" id="1_3i1kj"]
+[ext_resource type="Texture2D" uid="uid://by1mq76s5ladp" path="res://icon.svg" id="1_nhy3c"]
+[ext_resource type="PackedScene" uid="uid://dl8vweis11ae" path="res://general/hitbox/hitbox.tscn" id="2_3i1kj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhy3c"]
+size = Vector2(38, 38)
+
+[node name="Npc" type="Node2D"]
+script = ExtResource("1_3i1kj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_nhy3c")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_3i1kj")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_nhy3c")

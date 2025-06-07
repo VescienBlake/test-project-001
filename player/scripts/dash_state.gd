@@ -3,9 +3,9 @@ extends NodeState
 @export var character_body_2d: CharacterBody2D
 @export var animated_sprite_2d: AnimatedSprite2D
 
-@export var dash_speed = 700
+@export var dash_speed = 400
 var facing_right = true
-@export var dash_duration:= 0.2
+@export var dash_duration:= 0.4
 var dash_timer:= 0.0
 
 

@@ -31,9 +31,6 @@ func _on_physics_process(_delta : float) -> void:
 	if character_body_2d.is_on_floor():
 		character_body_2d.velocity.y = -jump_force
 	
-	# Flips sprite
-	if direction:
-		animated_sprite_2d.flip_h = false if direction > 0 else true
 		
 	# Buffered jump 
 	if GameInputEvents.jump_input():
