@@ -4,6 +4,7 @@ extends NodeState
 @export var animation_player: AnimationPlayer
 @export var attacking_2 = false
 @onready var hurtbox: Hurtbox = $"../../Hurtbox"
+@export var speed:= 200
 
 func _on_process(_delta : float) -> void:
 	pass
@@ -12,16 +13,20 @@ func _on_process(_delta : float) -> void:
 func _on_physics_process(_delta : float) -> void:
 	GameInputEvents.apply_gravity(character_body_2d, _delta)
 	
+	# Character movement when attacking
+	if character_body_2d.is_on_floor():
+		character_body_2d.velocity.x = 0
+	else:
+		character_body_2d.velocity.x = GameInputEvents.movement_input() * speed
+	
+	# Controls hurtbox
 	if attacking_2:
 		hurtbox.visible = true
 	else:
 		hurtbox.monitoring = false
 		hurtbox.visible = false
-	
-	#if not GameInputEvents.movement_input():
-		#character_body_2d.velocity.x = 0
-	#
-	#character_body_2d.move_and_slide()
+
+	character_body_2d.move_and_slide()
 	
 	
 func _on_next_transitions() -> void:

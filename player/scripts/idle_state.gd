@@ -1,14 +1,15 @@
 extends NodeState
 
-
+@onready var state_machine: NodeStateMachine = $".."
 @export var character_body_2d: CharacterBody2D
 @export var animated_sprite_2d: AnimatedSprite2D
 
 
+
 func _on_process(_delta : float) -> void:
 	pass
-
-
+		
+		
 func _on_physics_process(_delta : float) -> void:
 	character_body_2d.velocity.x = 0
 	
@@ -30,7 +31,7 @@ func _on_next_transitions() -> void:
 		transition.emit("Jump")
 		
 	# Dash state
-	elif GameInputEvents.dash_input():
+	elif GameInputEvents.dash_input() and DashCooldown.can_dash:
 		transition.emit("Dash")
 		
 	# Attack state

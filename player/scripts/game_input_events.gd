@@ -2,8 +2,9 @@ class_name GameInputEvents
 extends Node
 
 
-static func apply_gravity(body: CharacterBody2D, delta: float, gravity: float = 900):
+static func apply_gravity(body: CharacterBody2D, delta: float, gravity: float = 900, terminal_velocity: float = 400):
 	body.velocity.y += gravity * delta
+	body.velocity.y = min(body.velocity.y, terminal_velocity)
 	
 static func movement_input() -> float:
 	var direction: float = Input.get_axis("move_left", "move_right")

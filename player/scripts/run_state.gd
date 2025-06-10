@@ -35,7 +35,7 @@ func _on_next_transitions() -> void:
 		transition.emit("Jump")
 		
 	# Dash state
-	elif GameInputEvents.dash_input():
+	elif GameInputEvents.dash_input() and DashCooldown.can_dash:
 		transition.emit("Dash")
 	
 	# Attack state

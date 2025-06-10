@@ -15,6 +15,11 @@ run/main_scene="uid://0c70octi13q0"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Hitstop="*res://general/hitstop/hitstop_manager.gd"
+DashCooldown="*res://player/scripts/dash_cooldown.gd"
+
 [display]
 
 window/size/viewport_width=640
@@ -26,6 +31,10 @@ window/stretch/scale_mode="integer"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot-vim/plugin.cfg")
+
+[global_group]
+
+Camera=""
 
 [input]
 

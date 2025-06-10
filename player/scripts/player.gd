@@ -4,7 +4,6 @@ extends CharacterBody2D
 @export var animated_sprite_2d: AnimatedSprite2D
 @onready var state_machine: NodeStateMachine = $StateMachine
 @export var health = 3
-var can_dash = false
 @onready var hurtbox: Hurtbox = $Hurtbox
 
 
@@ -24,6 +23,7 @@ func _process(delta: float) -> void:
 			hurtbox.scale.x = -1.0
 			animated_sprite_2d.flip_h = true
 			animated_sprite_2d.offset.x = -16.0
+
 			
 	#if Input.is_action_just_pressed("attack"):
 		#health = 0
@@ -31,12 +31,7 @@ func _process(delta: float) -> void:
 	#check_death()
 
 
+
 func check_death():
 	if health <= 0 and state_machine.current_node_state_name != "death":
 		state_machine.transition_to("Death")
-
-
-func dash_cooldown():
-	can_dash = false
-	await get_tree().create_timer(0.6).timeout
-	can_dash = true

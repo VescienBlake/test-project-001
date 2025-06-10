@@ -8,6 +8,7 @@
 size = Vector2(38, 38)
 
 [node name="Npc" type="Node2D"]
+position = Vector2(0, -19)
 script = ExtResource("1_3i1kj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

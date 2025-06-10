@@ -39,6 +39,7 @@ func _on_next_transitions() -> void:
 			transition.emit("Fall")
 
 func _on_enter() -> void:
+	DashCooldown.dash_cooldown()
 	dash_timer = dash_duration
 	animated_sprite_2d.play("dash")
 
